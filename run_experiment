@@ -1,0 +1,1 @@
+for i in {1..15..2}; do for j in {1..10}; do ./convolution -f blur:$i,0 testImages/greyscale.bmp -o filteredImages/greyscale.bmp|grep "Filter took"|sed 's/.*took \(.*\) ms.*/\1/';done | awk '{if(min==""){min=max=$1}; if($1>max) {max=$1}; if($1< min) {min=$1}; total+=$1; count+=1} END {print total/count, min, max}'; done
